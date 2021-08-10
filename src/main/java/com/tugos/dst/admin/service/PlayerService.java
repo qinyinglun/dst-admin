@@ -21,7 +21,7 @@ public class PlayerService {
      * 读取游戏管理员列表
      */
     public List<String> getDstAdminList() {
-        String path = DstConstant.ROOT_PATH + DstConstant.SINGLE_SLASH + DstConstant.DST_ADMIN_LIST_PATH;
+        String path = DstConstant.ROOT_PATH + DstConstant.DST_ADMIN_LIST_PATH;
         return FileUtils.readLineFile(path);
     }
 
@@ -29,7 +29,16 @@ public class PlayerService {
      * 读取玩家黑名单列表
      */
     public List<String> getDstBlacklist() {
-        String path = DstConstant.ROOT_PATH + DstConstant.SINGLE_SLASH + DstConstant.DST_PLAYER_BLOCK_LIST_PATH;
+        String path = DstConstant.ROOT_PATH + DstConstant.DST_PLAYER_BLOCK_LIST_PATH;
+        return FileUtils.readLineFile(path);
+    }
+
+    /**
+     * white
+     * 读取玩家白名单列表
+     */
+    public List<String> getDstWhitelist() {
+        String path = DstConstant.ROOT_PATH + DstConstant.DST_PLAYER_WHITE_LIST_PATH;
         return FileUtils.readLineFile(path);
     }
 
@@ -37,25 +46,29 @@ public class PlayerService {
      * 保存管理员
      */
     public ResultVO<String> saveAdminList(List<String> adminList) throws Exception {
-        if (!this.checkConfigIsExists()) {
-            String path = DstConstant.ROOT_PATH + DstConstant.DST_USER_GAME_CONFG_PATH;
-            return ResultVO.fail(I18nResourcesConfig.getMessage("tip.player.config.not.exist")+":" + path);
-        }
-        String path = DstConstant.ROOT_PATH + DstConstant.SINGLE_SLASH + DstConstant.DST_ADMIN_LIST_PATH;
-        FileUtils.writeLineFile(path, adminList);
-        return ResultVO.success();
+        return saveTxt(adminList,DstConstant.ROOT_PATH + DstConstant.DST_ADMIN_LIST_PATH);
     }
 
     /**
      * 保存黑名单
      */
     public ResultVO<String> saveBlackList(List<String> blackList) throws Exception {
+        return saveTxt(blackList,DstConstant.ROOT_PATH + DstConstant.DST_PLAYER_BLOCK_LIST_PATH);
+    }
+
+    /**
+     * 保存白名单
+     */
+    public ResultVO<String> saveWhitelist(List<String> blackList) throws Exception {
+        return saveTxt(blackList,DstConstant.ROOT_PATH + DstConstant.DST_PLAYER_WHITE_LIST_PATH);
+    }
+
+    private ResultVO<String> saveTxt(List<String> blackList,String txtPath) throws Exception {
         if (!this.checkConfigIsExists()) {
             String path = DstConstant.ROOT_PATH + DstConstant.DST_USER_GAME_CONFG_PATH;
             return ResultVO.fail(I18nResourcesConfig.getMessage("tip.player.config.not.exist")+":" + path);
         }
-        String path = DstConstant.ROOT_PATH + DstConstant.SINGLE_SLASH + DstConstant.DST_PLAYER_BLOCK_LIST_PATH;
-        FileUtils.writeLineFile(path, blackList);
+        FileUtils.writeLineFile(txtPath, blackList);
         return ResultVO.success();
     }
 

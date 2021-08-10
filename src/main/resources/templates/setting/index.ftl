@@ -117,6 +117,75 @@
                             </el-col>
                         </el-row>
 
+
+                        <el-row>
+                            <el-col :span="15">
+                                <el-form-item prop="slider" label="<@spring.message code="setting.game.max_snapshots"/>">
+                                    <el-slider v-model="model.max_snapshots" :min="6" :max="max" :show-input="labelPosition === 'left'"></el-slider>
+                                </el-form-item>
+                            </el-col>
+                        </el-row>
+
+
+                        <el-row>
+                            <el-col :span="15">
+                                <el-form-item prop="slider" label="<@spring.message code="setting.game.whitelist_slots"/>">
+                                    <el-slider v-model="model.whitelist_slots" :min="0" :max="max" :show-input="labelPosition === 'left'"></el-slider>
+                                </el-form-item>
+                            </el-col>
+                        </el-row>
+
+
+                        <el-row>
+                            <el-col :span="15">
+                                <el-form-item prop="slider" label="<@spring.message code="setting.game.tick_rate"/>">
+                                    <el-slider v-model="model.tick_rate" :min="15" :step="15" :max="60" :show-input="labelPosition === 'left'"></el-slider>
+                                </el-form-item>
+                            </el-col>
+                        </el-row>
+
+                        <el-row>
+                            <el-col :span="15">
+                                <el-form-item prop="ss" label="<@spring.message code="setting.game.pause_when_empty"/>">
+                                    <el-switch v-model="model.pause_when_empty" active-text="<@spring.message code="home.pane1.card1.dst.active.on"/>" inactive-text="<@spring.message code="home.pane1.card1.dst.active.off"/>"></el-switch>
+                                </el-form-item>
+                            </el-col>
+                        </el-row>
+
+                        <el-row>
+                            <el-col :span="15">
+                                <el-form-item prop="ss" label="<@spring.message code="setting.game.vote_enabled"/>">
+                                    <el-switch v-model="model.vote_enabled" active-text="<@spring.message code="home.pane1.card1.dst.active.on"/>" inactive-text="<@spring.message code="home.pane1.card1.dst.active.off"/>"></el-switch>
+                                </el-form-item>
+                            </el-col>
+                        </el-row>
+
+
+
+
+                        <el-row>
+                            <el-col :span="15">
+                                <el-form-item prop="email"  label="<@spring.message code="setting.game.steam_group_id"/>">
+                                    <el-input v-model="model.steam_group_id" clearable maxlength="20"
+                                              show-word-limit></el-input>
+                                </el-form-item>
+                            </el-col>
+                        </el-row>
+
+                        <el-row>
+                            <el-col :span="15">
+                                <el-form-item prop="ss" label="<@spring.message code="setting.game.steam_group_only"/>">
+                                    <el-switch v-model="model.steam_group_only" active-text="<@spring.message code="home.pane1.card1.dst.active.on"/>" inactive-text="<@spring.message code="home.pane1.card1.dst.active.off"/>"></el-switch>
+                                </el-form-item>
+                            </el-col>
+                        </el-row>
+                        <el-row>
+                            <el-col :span="15">
+                                <el-form-item prop="ss" label="<@spring.message code="setting.game.steam_group_admins"/>">
+                                    <el-switch v-model="model.steam_group_admins" active-text="<@spring.message code="home.pane1.card1.dst.active.on"/>" inactive-text="<@spring.message code="home.pane1.card1.dst.active.off"/>"></el-switch>
+                                </el-form-item>
+                            </el-col>
+                        </el-row>
                     </el-form>
 
                     <el-button :size="size" @click="drawer = true" type="primary" style="margin-left: 16px;">
@@ -228,241 +297,398 @@
         el: '#setting_index_app',
         data: {
             active: 0,
-            max: 32,
+            max: 64,
             drawer: false,
-            myToken: 'pds-g^KU_qE7e8rv1^VVrVXd/01kBDicd7UO5LeL+uYZH1+geZlrutzItvOaw=',
-            myMaster: '    return {\n' +
-                '  ["desc"]="标准《饥荒》体验。",\n' +
-                '  ["hideminimap"]=false,\n' +
-                '  id="SURVIVAL_TOGETHER",\n' +
-                '  ["location"]="forest",\n' +
-                '  ["max_playlist_position"]=999,\n' +
-                '  ["min_playlist_position"]=0,\n' +
-                '  ["name"]="默认",\n' +
-                '  ["numrandom_set_pieces"]=4,\n' +
-                '  ["override_level_string"]=false,\n' +
-                '  ["overrides"]={\n' +
-                '    ["alternatehunt"]="often",\n' +
-                '    ["angrybees"]="rare",\n' +
-                '    ["antliontribute"]="default",\n' +
-                '    ["autumn"]="default",\n' +
-                '    ["bearger"]="default",\n' +
-                '    ["beefalo"]="default",\n' +
-                '    ["beefaloheat"]="default",\n' +
-                '    ["bees"]="default",\n' +
-                '    ["berrybush"]="default",\n' +
-                '    ["birds"]="default",\n' +
-                '    ["boons"]="often",\n' +
-                '    ["branching"]="default",\n' +
-                '    ["butterfly"]="default",\n' +
-                '    ["buzzard"]="default",\n' +
-                '    ["cactus"]="default",\n' +
-                '    ["carrot"]="default",\n' +
-                '    ["catcoon"]="default",\n' +
-                '    ["chess"]="default",\n' +
-                '    ["day"]="default",\n' +
-                '    ["deciduousmonster"]="default",\n' +
-                '    ["deerclops"]="default",\n' +
-                '    ["disease_delay"]="none",\n' +
-                '    ["dragonfly"]="default",\n' +
-                '    ["flint"]="default",\n' +
-                '    ["flowers"]="default",\n' +
-                '    ["frograin"]="never",\n' +
-                '    ["goosemoose"]="default",\n' +
-                '    ["grass"]="default",\n' +
-                '    ["has_ocean"]=true,\n' +
-                '    ["houndmound"]="default",\n' +
-                '    ["hounds"]="default",\n' +
-                '    ["hunt"]="default",\n' +
-                '    ["keep_disconnected_tiles"]=true,\n' +
-                '    ["krampus"]="often",\n' +
-                '    ["layout_mode"]="LinkNodesByKeys",\n' +
-                '    ["liefs"]="default",\n' +
-                '    ["lightning"]="default",\n' +
-                '    ["lightninggoat"]="default",\n' +
-                '    ["loop"]="default",\n' +
-                '    ["lureplants"]="default",\n' +
-                '    ["marshbush"]="default",\n' +
-                '    ["merm"]="default",\n' +
-                '    ["meteorshowers"]="default",\n' +
-                '    ["meteorspawner"]="default",\n' +
-                '    ["moles"]="default",\n' +
-                '    ["mushroom"]="default",\n' +
-                '    ["no_joining_islands"]=true,\n' +
-                '    ["no_wormholes_to_disconnected_tiles"]=true,\n' +
-                '    ["penguins"]="default",\n' +
-                '    ["perd"]="default",\n' +
-                '    ["petrification"]="default",\n' +
-                '    ["pigs"]="default",\n' +
-                '    ["ponds"]="default",\n' +
-                '    ["prefabswaps_start"]="default",\n' +
-                '    ["rabbits"]="default",\n' +
-                '    ["reeds"]="default",\n' +
-                '    ["regrowth"]="default",\n' +
-                '    ["roads"]="default",\n' +
-                '    ["rock"]="default",\n' +
-                '    ["rock_ice"]="default",\n' +
-                '    ["sapling"]="default",\n' +
-                '    ["season_start"]="default",\n' +
-                '    ["specialevent"]="winters_feast",\n' +
-                '    ["spiders"]="default",\n' +
-                '    ["spring"]="default",\n' +
-                '    ["start_location"]="default",\n' +
-                '    ["summer"]="default",\n' +
-                '    ["tallbirds"]="default",\n' +
-                '    ["task_set"]="default",\n' +
-                '    ["tentacles"]="default",\n' +
-                '    ["touchstone"]="default",\n' +
-                '    ["trees"]="default",\n' +
-                '    ["tumbleweed"]="default",\n' +
-                '    ["walrus"]="default",\n' +
-                '    ["weather"]="default",\n' +
-                '    ["wildfires"]="rare",\n' +
-                '    ["winter"]="default",\n' +
-                '    ["world_size"]="default",\n' +
-                '    ["wormhole_prefab"]="wormhole" \n' +
-                '  },\n' +
-                '  ["random_set_pieces"]={\n' +
-                '    "Sculptures_2",\n' +
-                '    "Sculptures_3",\n' +
-                '    "Sculptures_4",\n' +
-                '    "Sculptures_5",\n' +
-                '    "Chessy_1",\n' +
-                '    "Chessy_2",\n' +
-                '    "Chessy_3",\n' +
-                '    "Chessy_4",\n' +
-                '    "Chessy_5",\n' +
-                '    "Chessy_6",\n' +
-                '    "Maxwell1",\n' +
-                '    "Maxwell2",\n' +
-                '    "Maxwell3",\n' +
-                '    "Maxwell4",\n' +
-                '    "Maxwell6",\n' +
-                '    "Maxwell7",\n' +
-                '    "Warzone_1",\n' +
-                '    "Warzone_2",\n' +
-                '    "Warzone_3" \n' +
-                '  },\n' +
-                '  ["required_prefabs"]={ "multiplayer_portal" },\n' +
-                '  ["required_setpieces"]={ "Sculptures_1", "Maxwell5" },\n' +
-                '  ["substitutes"]={  },\n' +
-                '  ["version"]=4 \n' +
-                '}\n' +
-                '    ',
-            myCaves: '    return {\n' +
-                '  ["background_node_range"]={ 0, 1 },\n' +
-                '  ["desc"]="探查洞穴…… 一起！",\n' +
-                '  ["hideminimap"]=false,\n' +
-                '  id="DST_CAVE",\n' +
-                '  ["location"]="cave",\n' +
-                '  ["max_playlist_position"]=999,\n' +
-                '  ["min_playlist_position"]=0,\n' +
-                '  ["name"]="洞穴",\n' +
-                '  ["numrandom_set_pieces"]=0,\n' +
-                '  ["override_level_string"]=false,\n' +
-                '  ["overrides"]={\n' +
-                '    ["banana"]="default",\n' +
-                '    ["bats"]="default",\n' +
-                '    ["berrybush"]="default",\n' +
-                '    ["boons"]="often",\n' +
-                '    ["branching"]="default",\n' +
-                '    ["bunnymen"]="default",\n' +
-                '    ["cave_ponds"]="default",\n' +
-                '    ["cave_spiders"]="default",\n' +
-                '    ["cavelight"]="default",\n' +
-                '    ["chess"]="default",\n' +
-                '    ["disease_delay"]="none",\n' +
-                '    ["earthquakes"]="rare",\n' +
-                '    ["fern"]="default",\n' +
-                '    ["fissure"]="default",\n' +
-                '    ["flint"]="default",\n' +
-                '    ["flower_cave"]="often",\n' +
-                '    ["grass"]="default",\n' +
-                '    ["layout_mode"]="RestrictNodesByKey",\n' +
-                '    ["lichen"]="default",\n' +
-                '    ["liefs"]="rare",\n' +
-                '    ["loop"]="default",\n' +
-                '    ["marshbush"]="default",\n' +
-                '    ["monkey"]="default",\n' +
-                '    ["mushroom"]="default",\n' +
-                '    ["mushtree"]="default",\n' +
-                '    ["prefabswaps_start"]="default",\n' +
-                '    ["reeds"]="default",\n' +
-                '    ["regrowth"]="default",\n' +
-                '    ["roads"]="never",\n' +
-                '    ["rock"]="default",\n' +
-                '    ["rocky"]="default",\n' +
-                '    ["sapling"]="default",\n' +
-                '    ["season_start"]="default",\n' +
-                '    ["slurper"]="default",\n' +
-                '    ["slurtles"]="default",\n' +
-                '    ["specialevent"]="winters_feast",\n' +
-                '    ["start_location"]="caves",\n' +
-                '    ["task_set"]="cave_default",\n' +
-                '    ["tentacles"]="default",\n' +
-                '    ["touchstone"]="default",\n' +
-                '    ["trees"]="default",\n' +
-                '    ["weather"]="default",\n' +
-                '    ["world_size"]="small",\n' +
-                '    ["wormattacks"]="default",\n' +
-                '    ["wormhole_prefab"]="tentacle_pillar",\n' +
-                '    ["wormlights"]="default",\n' +
-                '    ["worms"]="default" \n' +
-                '  },\n' +
-                '  ["required_prefabs"]={ "multiplayer_portal" },\n' +
-                '  ["substitutes"]={  },\n' +
-                '  ["version"]=4 \n' +
-                '}\n' +
-                '    ',
-            myMod: '                return {\n' +
-                '  ["workshop-1651623054"]={\n' +
-                '    ["configuration_options"]={\n' +
-                '      ["ddon"]=true,\n' +
-                '      ["hbcolor"]="dynamic",\n' +
-                '      ["hblength"]=10,\n' +
-                '      ["hbpos"]=1,\n' +
-                '      ["hbstyle"]="heart",\n' +
-                '      ["value"]=true \n' +
-                '    },\n' +
-                '    ["enabled"]=true \n' +
-                '  },\n' +
-                '  ["workshop-375850593"]={ ["configuration_options"]={  }, ["enabled"]=true },\n' +
-                '  ["workshop-378160973"]={\n' +
-                '    ["configuration_options"]={\n' +
-                '      ["ENABLEPINGS"]=true,\n' +
-                '      ["FIREOPTIONS"]=2,\n' +
-                '      ["OVERRIDEMODE"]=false,\n' +
-                '      ["SHAREMINIMAPPROGRESS"]=true,\n' +
-                '      ["SHOWFIREICONS"]=true,\n' +
-                '      ["SHOWPLAYERICONS"]=true,\n' +
-                '      ["SHOWPLAYERSOPTIONS"]=2 \n' +
-                '    },\n' +
-                '    ["enabled"]=true \n' +
-                '  },\n' +
-                '  ["workshop-501385076"]={ ["configuration_options"]={ ["quick_harvest"]=true }, ["enabled"]=true },\n' +
-                '  ["workshop-666155465"]={\n' +
-                '    ["configuration_options"]={\n' +
-                '      ["chestB"]=-1,\n' +
-                '      ["chestG"]=-1,\n' +
-                '      ["chestR"]=-1,\n' +
-                '      ["food_estimation"]=-1,\n' +
-                '      ["food_order"]=0,\n' +
-                '      ["food_style"]=0,\n' +
-                '      ["lang"]="auto",\n' +
-                '      ["show_food_units"]=-1,\n' +
-                '      ["show_uses"]=-1 \n' +
-                '    },\n' +
-                '    ["enabled"]=true \n' +
-                '  },\n' +
-                '["workshop-1216718131"]={\n' +
-                '    ["configuration_options"]={ ["clean"]=true, ["lang"]=true, ["stack"]=true },\n' +
-                '    ["enabled"]=true \n' +
-                '  } \n' +
-                '}\n' +
-                '    \n' +
-                '    \n' +
-                '    \n' +
-                '    ',
+            myToken: 'pds-g^KU_3pCs5TYV^AE/mmOIA7sQWSHX+ZAmtTI5F0gERacZseBlzzsl9VsQ=',
+            myMaster: "return {"
+                +"    custom_settings_desc = \"\","
+                +"    custom_settings_id = \"CUSTOM_小世界资源\","
+                +"    custom_settings_name = \"小世界资源\","
+                +"    custom_worldgen_desc = \"\","
+                +"    custom_worldgen_id = \"CUSTOM_小世界资源\","
+                +"    custom_worldgen_name = \"小世界资源\","
+                +"    desc = \"标准《饥荒》体验。\","
+                +"    hideminimap = false,"
+                +"    id = \"SURVIVAL_TOGETHER\","
+                +"    location = \"forest\","
+                +"    max_playlist_position = 999,"
+                +"    min_playlist_position = 0,"
+                +"    name = \"标准森林\","
+                +"    numrandom_set_pieces = 4,"
+                +"    override_level_string = false,"
+                +"    overrides = {"
+                +"        alternatehunt = \"default\","
+                +"        angrybees = \"default\","
+                +"        antliontribute = \"default\","
+                +"        autumn = \"default\","
+                +"        bats_setting = \"default\","
+                +"        bearger = \"often\","
+                +"        beefalo = \"default\","
+                +"        beefaloheat = \"default\","
+                +"        beequeen = \"often\","
+                +"        bees = \"default\","
+                +"        bees_setting = \"default\","
+                +"        berrybush = \"uncommon\","
+                +"        birds = \"default\","
+                +"        boons = \"default\","
+                +"        branching = \"never\","
+                +"        brightmarecreatures = \"default\","
+                +"        bunnymen_setting = \"default\","
+                +"        butterfly = \"default\","
+                +"        buzzard = \"default\","
+                +"        cactus = \"default\","
+                +"        carrot = \"uncommon\","
+                +"        carrots_regrowth = \"slow\","
+                +"        catcoon = \"default\","
+                +"        catcoons = \"default\","
+                +"        chess = \"default\","
+                +"        cookiecutters = \"default\","
+                +"        crabking = \"default\","
+                +"        day = \"default\","
+                +"        deciduousmonster = \"default\","
+                +"        deciduoustree_regrowth = \"slow\","
+                +"        deerclops = \"often\","
+                +"        dragonfly = \"often\","
+                +"        dropeverythingondespawn = \"default\","
+                +"        evergreen_regrowth = \"slow\","
+                +"        extrastartingitems = \"default\","
+                +"        fishschools = \"default\","
+                +"        flint = \"uncommon\","
+                +"        flowers = \"uncommon\","
+                +"        flowers_regrowth = \"slow\","
+                +"        frograin = \"rare\","
+                +"        frogs = \"default\","
+                +"        fruitfly = \"default\","
+                +"        gnarwail = \"default\","
+                +"        goosemoose = \"often\","
+                +"        grass = \"uncommon\","
+                +"        grassgekkos = \"default\","
+                +"        has_ocean = true,"
+                +"        hound_mounds = \"default\","
+                +"        houndmound = \"default\","
+                +"        hounds = \"default\","
+                +"        hunt = \"default\","
+                +"        keep_disconnected_tiles = true,"
+                +"        klaus = \"often\","
+                +"        krampus = \"often\","
+                +"        layout_mode = \"LinkNodesByKeys\","
+                +"        liefs = \"default\","
+                +"        lightning = \"default\","
+                +"        lightninggoat = \"default\","
+                +"        loop = \"never\","
+                +"        lureplants = \"default\","
+                +"        malbatross = \"default\","
+                +"        marshbush = \"uncommon\","
+                +"        merm = \"default\","
+                +"        merms = \"default\","
+                +"        meteorshowers = \"default\","
+                +"        meteorspawner = \"default\","
+                +"        moles = \"default\","
+                +"        moles_setting = \"default\","
+                +"        moon_berrybush = \"uncommon\","
+                +"        moon_bullkelp = \"uncommon\","
+                +"        moon_carrot = \"default\","
+                +"        moon_fissure = \"default\","
+                +"        moon_fruitdragon = \"default\","
+                +"        moon_hotspring = \"default\","
+                +"        moon_rock = \"uncommon\","
+                +"        moon_sapling = \"uncommon\","
+                +"        moon_spider = \"default\","
+                +"        moon_spiders = \"default\","
+                +"        moon_starfish = \"default\","
+                +"        moon_tree = \"uncommon\","
+                +"        moon_tree_regrowth = \"slow\","
+                +"        mosquitos = \"default\","
+                +"        mushroom = \"uncommon\","
+                +"        mutated_hounds = \"default\","
+                +"        no_joining_islands = true,"
+                +"        no_wormholes_to_disconnected_tiles = true,"
+                +"        ocean_bullkelp = \"uncommon\","
+                +"        ocean_seastack = \"ocean_uncommon\","
+                +"        ocean_shoal = \"default\","
+                +"        ocean_waterplant = \"ocean_default\","
+                +"        ocean_wobsterden = \"default\","
+                +"        penguins = \"default\","
+                +"        penguins_moon = \"default\","
+                +"        perd = \"default\","
+                +"        petrification = \"default\","
+                +"        pigs = \"default\","
+                +"        pigs_setting = \"default\","
+                +"        ponds = \"default\","
+                +"        prefabswaps_start = \"classic\","
+                +"        rabbits = \"default\","
+                +"        rabbits_setting = \"default\","
+                +"        reeds = \"uncommon\","
+                +"        regrowth = \"veryslow\","
+                +"        roads = \"default\","
+                +"        rock = \"uncommon\","
+                +"        rock_ice = \"default\","
+                +"        saltstack_regrowth = \"slow\","
+                +"        sapling = \"uncommon\","
+                +"        season_start = \"default\","
+                +"        seasonalstartingitems = \"default\","
+                +"        shadowcreatures = \"default\","
+                +"        sharks = \"default\","
+                +"        spawnprotection = \"default\","
+                +"        specialevent = \"winters_feast\","
+                +"        spider_warriors = \"default\","
+                +"        spiderqueen = \"default\","
+                +"        spiders = \"default\","
+                +"        spiders_setting = \"default\","
+                +"        spring = \"default\","
+                +"        squid = \"default\","
+                +"        start_location = \"default\","
+                +"        summer = \"default\","
+                +"        tallbirds = \"default\","
+                +"        task_set = \"default\","
+                +"        tentacles = \"default\","
+                +"        touchstone = \"default\","
+                +"        trees = \"uncommon\","
+                +"        tumbleweed = \"default\","
+                +"        twiggytrees_regrowth = \"slow\","
+                +"        walrus = \"default\","
+                +"        walrus_setting = \"default\","
+                +"        wasps = \"default\","
+                +"        weather = \"default\","
+                +"        wildfires = \"never\","
+                +"        winter = \"default\","
+                +"        wobsters = \"default\","
+                +"        world_size = \"small\","
+                +"        wormhole_prefab = \"wormhole\""
+                +"    },"
+                +"    random_set_pieces = {"
+                +"        \"Sculptures_2\","
+                +"        \"Sculptures_3\","
+                +"        \"Sculptures_4\","
+                +"        \"Sculptures_5\","
+                +"        \"Chessy_1\","
+                +"        \"Chessy_2\","
+                +"        \"Chessy_3\","
+                +"        \"Chessy_4\","
+                +"        \"Chessy_5\","
+                +"        \"Chessy_6\","
+                +"        \"Maxwell1\","
+                +"        \"Maxwell2\","
+                +"        \"Maxwell3\","
+                +"        \"Maxwell4\","
+                +"        \"Maxwell6\","
+                +"        \"Maxwell7\","
+                +"        \"Warzone_1\","
+                +"        \"Warzone_2\","
+                +"        \"Warzone_3\""
+                +"    },"
+                +"    required_prefabs = {"
+                +"        \"multiplayer_portal\""
+                +"    },"
+                +"    required_setpieces = {"
+                +"        \"Sculptures_1\","
+                +"        \"Maxwell5\""
+                +"    },"
+                +"    settings_desc = \"标准《饥荒》体验。\","
+                +"    settings_id = \"SURVIVAL_TOGETHER\","
+                +"    settings_name = \"标准森林\","
+                +"    substitutes = {},"
+                +"    version = 4,"
+                +"    worldgen_desc = \"标准《饥荒》体验。\","
+                +"    worldgen_id = \"SURVIVAL_TOGETHER\","
+                +"    worldgen_name = \"标准森林\""
+                +"}"
+            ,
+            myCaves: "return {"
+                +"  background_node_range={ 0, 1 },"
+                +"  custom_settings_desc=\"\","
+                +"  custom_settings_id=\"CUSTOM_小世界\","
+                +"  custom_settings_name=\"小世界\","
+                +"  custom_worldgen_desc=\"\","
+                +"  custom_worldgen_id=\"CUSTOM_小世界\","
+                +"  custom_worldgen_name=\"小世界\","
+                +"  desc=\"探查洞穴…… 一起！\","
+                +"  hideminimap=false,"
+                +"  id=\"DST_CAVE\","
+                +"  location=\"cave\","
+                +"  max_playlist_position=999,"
+                +"  min_playlist_position=0,"
+                +"  name=\"洞穴\","
+                +"  numrandom_set_pieces=0,"
+                +"  override_level_string=false,"
+                +"  overrides={"
+                +"    atriumgate=\"default\","
+                +"    banana=\"uncommon\","
+                +"    bats=\"default\","
+                +"    bats_setting=\"default\","
+                +"    beefaloheat=\"default\","
+                +"    berrybush=\"uncommon\","
+                +"    boons=\"default\","
+                +"    branching=\"never\","
+                +"    brightmarecreatures=\"default\","
+                +"    bunnymen=\"default\","
+                +"    bunnymen_setting=\"default\","
+                +"    cave_ponds=\"default\","
+                +"    cave_spiders=\"default\","
+                +"    cavelight=\"default\","
+                +"    chess=\"default\","
+                +"    day=\"default\","
+                +"    dropeverythingondespawn=\"default\","
+                +"    dustmoths=\"default\","
+                +"    earthquakes=\"default\","
+                +"    extrastartingitems=\"default\","
+                +"    fern=\"uncommon\","
+                +"    fissure=\"default\","
+                +"    flint=\"uncommon\","
+                +"    flower_cave=\"uncommon\","
+                +"    flower_cave_regrowth=\"slow\","
+                +"    fruitfly=\"default\","
+                +"    grass=\"uncommon\","
+                +"    grassgekkos=\"default\","
+                +"    krampus=\"often\","
+                +"    layout_mode=\"RestrictNodesByKey\","
+                +"    lichen=\"uncommon\","
+                +"    liefs=\"default\","
+                +"    lightflier_flower_regrowth=\"slow\","
+                +"    lightfliers=\"default\","
+                +"    loop=\"never\","
+                +"    marshbush=\"default\","
+                +"    merms=\"default\","
+                +"    molebats=\"default\","
+                +"    moles_setting=\"default\","
+                +"    monkey=\"default\","
+                +"    monkey_setting=\"default\","
+                +"    mushgnome=\"default\","
+                +"    mushroom=\"uncommon\","
+                +"    mushtree=\"uncommon\","
+                +"    mushtree_moon_regrowth=\"slow\","
+                +"    mushtree_regrowth=\"slow\","
+                +"    nightmarecreatures=\"default\","
+                +"    pigs_setting=\"default\","
+                +"    prefabswaps_start=\"default\","
+                +"    reeds=\"uncommon\","
+                +"    regrowth=\"slow\","
+                +"    roads=\"never\","
+                +"    rock=\"uncommon\","
+                +"    rocky=\"default\","
+                +"    rocky_setting=\"default\","
+                +"    sapling=\"uncommon\","
+                +"    season_start=\"default\","
+                +"    seasonalstartingitems=\"default\","
+                +"    shadowcreatures=\"default\","
+                +"    slurper=\"default\","
+                +"    slurtles=\"default\","
+                +"    slurtles_setting=\"default\","
+                +"    snurtles=\"default\","
+                +"    spawnprotection=\"default\","
+                +"    specialevent=\"winters_feast\","
+                +"    spider_dropper=\"default\","
+                +"    spider_hider=\"default\","
+                +"    spider_spitter=\"default\","
+                +"    spider_warriors=\"default\","
+                +"    spiderqueen=\"default\","
+                +"    spiders=\"default\","
+                +"    spiders_setting=\"default\","
+                +"    start_location=\"caves\","
+                +"    task_set=\"cave_default\","
+                +"    tentacles=\"default\","
+                +"    toadstool=\"default\","
+                +"    touchstone=\"default\","
+                +"    trees=\"uncommon\","
+                +"    weather=\"default\","
+                +"    world_size=\"small\","
+                +"    wormattacks=\"default\","
+                +"    wormhole_prefab=\"tentacle_pillar\","
+                +"    wormlights=\"default\","
+                +"    worms=\"default\" "
+                +"  },"
+                +"  required_prefabs={ \"multiplayer_portal\" },"
+                +"  settings_desc=\"探查洞穴…… 一起！\","
+                +"  settings_id=\"DST_CAVE\","
+                +"  settings_name=\"洞穴\","
+                +"  substitutes={  },"
+                +"  version=4,"
+                +"  worldgen_desc=\"探查洞穴…… 一起！\","
+                +"  worldgen_id=\"DST_CAVE\","
+                +"  worldgen_name=\"洞穴\" "
+                +"}"
+            ,
+            myMod: "return {"
+                +"  [\"workshop-1301033176\"]={ configuration_options={ LANG=\"auto\" }, enabled=true },"
+                +"  [\"workshop-1530801499\"]={"
+                +"    configuration_options={ Hunger_Cost=2, Ownership=false, Sanity_Cost=1 },"
+                +"    enabled=true "
+                +"  },"
+                +"  [\"workshop-1818688368\"]={ configuration_options={  }, enabled=true },"
+                +"  [\"workshop-375859599\"]={"
+                +"    configuration_options={"
+                +"      divider=5,"
+                +"      random_health_value=0,"
+                +"      random_range=0,"
+                +"      send_unknwon_prefabs=false,"
+                +"      show_type=0,"
+                +"      unknwon_prefabs=1,"
+                +"      use_blacklist=true "
+                +"    },"
+                +"    enabled=true "
+                +"  },"
+                +"  [\"workshop-635876729\"]={"
+                +"    configuration_options={"
+                +"      Invincible_Wall=true,"
+                +"      KrampusMustDropSack=0.03,"
+                +"      RELEASE_BEES=false,"
+                +"      SPRING_BEES=true,"
+                +"      afk_enabled=true,"
+                +"      afk_time=30,"
+                +"      amudiao=true,"
+                +"      auto_door=true,"
+                +"      auto_stack=true,"
+                +"      baodiao=1,"
+                +"      beefalo_power=false,"
+                +"      chester_hutch=false,"
+                +"      clean_custom=\"\","
+                +"      clean_level=1,"
+                +"      clean_period=10,"
+                +"      death_no_diao=true,"
+                +"      detect_witherable=1,"
+                +"      disable_moontree_regrowth=true,"
+                +"      disable_mushtree_regrowth=true,"
+                +"      emergency_time=5,"
+                +"      force_twiggytree_removal=true,"
+                +"      fuel_time=5,"
+                +"      give_start_item=true,"
+                +"      handmake=20,"
+                +"      krampus_sack_ice=true,"
+                +"      maprevealer_switch=true,"
+                +"      mode=\"random\","
+                +"      nice_boat_leak=true,"
+                +"      no_bat=false,"
+                +"      no_grass_and_diseaseable=true,"
+                +"      onlyclose=false,"
+                +"      quick_harvest=true,"
+                +"      rendiao=2,"
+                +"      respawn_atrium=5,"
+                +"      respawn_beeqeen=5,"
+                +"      respawn_toadstool=5,"
+                +"      retrapfix=60,"
+                +"      retraprandomx=10,"
+                +"      retraprandomy=60,"
+                +"      spread_fire=1,"
+                +"      zbdiao=true "
+                +"    },"
+                +"    enabled=true "
+                +"  },"
+                +"  [\"workshop-666155465\"]={"
+                +"    configuration_options={"
+                +"      chestB=-1,"
+                +"      chestG=-1,"
+                +"      chestR=-1,"
+                +"      food_estimation=-1,"
+                +"      food_order=0,"
+                +"      food_style=0,"
+                +"      lang=\"auto\","
+                +"      show_food_units=-1,"
+                +"      show_uses=-1 "
+                +"    },"
+                +"    enabled=true "
+                +"  } "
+                +"}"
+            ,
             model: {
                 clusterIntention: 'social',
                 clusterName: undefined,
@@ -476,6 +702,15 @@
                 cavesMapData: undefined,
                 modData: undefined,
                 type: 1,
+
+                max_snapshots: 6,
+                whitelist_slots: 0,
+                tick_rate: 15,
+                pause_when_empty: false,
+                vote_enabled: false,
+                steam_group_only: false,
+                steam_group_id: 0,
+                steam_group_admins: false ,
             },
             labelPosition:'left',
             size:'medium'
@@ -559,6 +794,15 @@
                     cavesMapData: undefined,
                     modData: undefined,
                     type: 1,
+
+                    max_snapshots: 6,
+                    whitelist_slots: 0,
+                    tick_rate: 15,
+                    pause_when_empty: false,
+                    vote_enabled: false,
+                    steam_group_only: false,
+                    steam_group_id: 0,
+                    steam_group_admins: false ,
                 };
                 this.model = tmp;
             },

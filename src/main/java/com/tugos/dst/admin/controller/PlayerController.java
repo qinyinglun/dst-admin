@@ -71,9 +71,17 @@ public class PlayerController {
         log.info("保存管理员和黑名单：" + playerSettingVO);
         playerService.saveAdminList(playerSettingVO.getAdminList());
         playerService.saveBlackList(playerSettingVO.getBlackList());
+        playerService.saveWhitelist(playerSettingVO.getWhiteList());
         return ResultVO.success();
     }
 
+    @GetMapping("/getDstWhitelist")
+    @RequiresAuthentication
+    @ResponseBody
+    public ResultVO<List<String>> getDstWhitelist() {
+        log.info("拉取玩家白名单列表");
+        return ResultVO.data(playerService.getDstWhitelist());
+    }
 
     @Autowired
     public void setPlayerService(PlayerService playerService) {

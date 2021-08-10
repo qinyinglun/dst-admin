@@ -187,12 +187,17 @@ public final class DstConstant {
     /**
      * 管理员存储位置
      */
-    public static final String DST_ADMIN_LIST_PATH = ".klei/DoNotStarveTogether/MyDediServer/adminlist.txt";
+    public static final String DST_ADMIN_LIST_PATH = DST_USER_GAME_CONFG_PATH + "/adminlist.txt";
 
     /**
      * 黑名单存储位置
      */
-    public static final String DST_PLAYER_BLOCK_LIST_PATH = ".klei/DoNotStarveTogether/MyDediServer/blocklist.txt";
+    public static final String DST_PLAYER_BLOCK_LIST_PATH = DST_USER_GAME_CONFG_PATH + "/blocklist.txt";
+
+    /**
+     * 白名单存储位置
+     */
+    public static final String DST_PLAYER_WHITE_LIST_PATH = DST_USER_GAME_CONFG_PATH+"/whitelist.txt";
 
     /**
      * 游戏mod设置

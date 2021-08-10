@@ -1,6 +1,7 @@
 package com.tugos.dst.admin.service;
 
 
+import cn.hutool.core.bean.BeanUtil;
 import com.tugos.dst.admin.common.ResultVO;
 import com.tugos.dst.admin.config.I18nResourcesConfig;
 import com.tugos.dst.admin.enums.SettingTypeEnum;
@@ -11,7 +12,6 @@ import com.tugos.dst.admin.utils.FileUtils;
 import com.tugos.dst.admin.utils.filter.SensitiveFilter;
 import com.tugos.dst.admin.vo.GameConfigVO;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -23,10 +23,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Locale;
+import java.util.*;
 
 /**
  * @author qinming
@@ -105,59 +102,24 @@ public class SettingService {
         if (!this.checkTokenIsExists()) {
             return null;
         }
+
         GameConfigVO gameConfigVO = new GameConfigVO();
         String token = this.getToken();
         gameConfigVO.setToken(token);
         List<String> clusterData = this.getClusterData();
-        if (CollectionUtils.isNotEmpty(clusterData)) {
-            for (String e : clusterData) {
-                if (StringUtils.isBlank(e)) {
-                    continue;
-                }
-                if (e.contains("game_mode")) {
-                    String[] split = e.split("=");
-                    if (StringUtils.isNotBlank(split[1])) {
-                        gameConfigVO.setGameMode(split[1].trim());
-                    }
-                }
-                if (e.contains("max_players")) {
-                    String[] split = e.split("=");
-                    if (StringUtils.isNotBlank(split[1])) {
-                        gameConfigVO.setMaxPlayers(Integer.valueOf(split[1].trim()));
-                    }
-                }
-                if (e.contains("pvp")) {
-                    String[] split = e.split("=");
-                    if (StringUtils.isNotBlank(split[1])) {
-                        gameConfigVO.setPvp(Boolean.valueOf(split[1].trim()));
-                    }
-                }
-                if (e.contains("cluster_intention")) {
-                    String[] split = e.split("=");
-                    if (StringUtils.isNotBlank(split[1])) {
-                        gameConfigVO.setClusterIntention(split[1].trim());
-                    }
-                }
-                if (e.contains("cluster_password")) {
-                    String[] split = e.split("=");
-                    if (StringUtils.isNotBlank(split[1])) {
-                        gameConfigVO.setClusterPassword(split[1].trim());
-                    }
-                }
-                if (e.contains("cluster_description")) {
-                    String[] split = e.split("=");
-                    if (StringUtils.isNotBlank(split[1])) {
-                        gameConfigVO.setClusterDescription(split[1].trim());
-                    }
-                }
-                if (e.contains("cluster_name")) {
-                    String[] split = e.split("=");
-                    if (StringUtils.isNotBlank(split[1])) {
-                        gameConfigVO.setClusterName(split[1].trim());
-                    }
+
+
+        Map<String,Object> valueMap = new HashMap<>();
+        clusterData.forEach(s -> {
+            if (s.contains("=")){
+                String[] split = s.split("=");
+                if (StringUtils.isNotBlank(split[1])) {
+                    valueMap.put(split[0].trim(), split[1].trim());
                 }
             }
-        }
+        });
+        BeanUtil.copyProperties(valueMap,gameConfigVO);
+
         String masterMapData = this.getMasterMapData();
         gameConfigVO.setMasterMapData(masterMapData);
         String cavesMapData = this.getCavesMapData();
@@ -346,17 +308,20 @@ public class SettingService {
     private void createCluster(GameConfigVO vo) throws Exception {
         String filePath = DstConstant.ROOT_PATH + DstConstant.DST_USER_GAME_CONFG_PATH +
                 DstConstant.SINGLE_SLASH + DstConstant.DST_USER_CLUSTER_INI_NAME;
+
         log.info("生成游戏配置文件 cluster.ini文件,{}", filePath);
         LinkedList<String> list = new LinkedList<>();
         list.add("[GAMEPLAY]");
         list.add("game_mode = " + vo.getGameMode());
         list.add("max_players = " + vo.getMaxPlayers());
         list.add("pvp = " + vo.getPvp());
-        list.add("pause_when_empty = true");
+        list.add("pause_when_empty = "+vo.getPause_when_empty());
+        list.add("vote_enabled = "+vo.getVote_enabled());
         list.add("");
         list.add("");
         list.add("[NETWORK]");
         list.add("lan_only_cluster = false");
+        list.add("tick_rate = "+vo.getTick_rate());
         list.add("cluster_intention = " + vo.getClusterIntention());
         String clusterPassword = vo.getClusterPassword();
         if (StringUtils.isNotBlank(clusterPassword)) {
@@ -379,10 +344,27 @@ public class SettingService {
         //根据环境设置语言
         Locale locale = LocaleContextHolder.getLocale();
         list.add("cluster_language = " + locale.getLanguage());
+
+        list.add("whitelist_slots = "+vo.getWhitelist_slots());
+
+        list.add("");
+
+        /**
+         *
+         *      * steam_group_only = false           # 只允许某 Steam 组的成员加入
+         *      * steam_group_id = 0                 # 指定某个 Steam 组，填写组 ID
+         *     * steam_group_admins = false         # 开启后，Steam 组的管理员拥有服务器的管理权限
+         */
+        list.add("[STEAM]");
+        list.add("steam_group_only = "+vo.getSteam_group_only());
+        list.add("steam_group_id = "+vo.getSteam_group_id());
+        list.add("steam_group_admins = "+vo.getSteam_group_admins());
+
+
         list.add("");
         list.add("[MISC]");
         list.add("console_enabled = true");
-        list.add("max_snapshots = " + maxSnapshots);
+        list.add("max_snapshots = " + vo.getMax_snapshots());
         list.add("");
         list.add("");
         list.add("[SHARD]");

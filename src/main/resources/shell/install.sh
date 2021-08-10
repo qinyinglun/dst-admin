@@ -7,6 +7,7 @@ sudo apt-get install -y libcurl4-gnutls-dev:i386
 sudo apt-get install -y screen
 
 mkdir ~/steamcmd
+mkdir -p ~/.klei/DoNotStarveTogether/MyDediServer
 cd ~/steamcmd
 
 wget https://steamcdn-a.akamaihd.net/client/installer/steamcmd_linux.tar.gz
@@ -22,9 +23,7 @@ cp ~/steamcmd/linux32/libstdc++.so.6 ~/dst/bin/lib32/
 #
 #chmod +x overworld.sh
 #chmod +x cave.sh
-
 mkdir -p ~/.klei/DoNotStarveTogether/MyDediServer
-
 cd ~
 
 
