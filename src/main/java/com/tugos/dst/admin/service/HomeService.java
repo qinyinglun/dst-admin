@@ -155,7 +155,7 @@ public class HomeService {
      * @return true 安装了
      */
     private boolean checkIsInstallDst() {
-        String startProgram = DstConstant.ROOT_PATH + DstConstant.SINGLE_SLASH + DstConstant.START_DST_BIN_PATH + DstConstant.SINGLE_SLASH + DstConstant.DST_START_PROGRAM;
+        String startProgram = DstConstant.ROOT_PATH + DstConstant.START_DST_BIN_PATH + DstConstant.SINGLE_SLASH + DstConstant.DST_START_PROGRAM;
         File masterFile = new File(startProgram);
         if (masterFile.exists()) {
             return  true;

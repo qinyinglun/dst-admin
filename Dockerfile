@@ -1,12 +1,9 @@
-FROM ubuntu:16.04
+FROM ubuntu:16.04  as ubuntu-dst
 
 RUN sed -i "s@http://.*archive.ubuntu.com@http://repo.huaweicloud.com@g" /etc/apt/sources.list \
     && sed -i "s@http://.*security.ubuntu.com@http://repo.huaweicloud.com@g" /etc/apt/sources.list
 
 USER root
-
-COPY ./target/dst-admin.jar dst-admin.jar
-
 
 ENV LANG C.UTF-8
 ENV TZ=Asia/Shanghai
@@ -39,4 +36,9 @@ EXPOSE 27016/udp
 EXPOSE 8767/udp
 
 CMD ["mkdir","-p", "~/.klei/DoNotStarveTogether/MyDediServer"]
+
+
+FROM ubuntu-dst
+
+COPY ./target/dst-admin.jar dst-admin.jar
 CMD ["nohup","java", "-jar", "-Xms250m", "-Xmx250m", "dst-admin.jar", "&"]

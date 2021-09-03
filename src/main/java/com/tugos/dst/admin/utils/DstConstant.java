@@ -13,7 +13,7 @@ public final class DstConstant {
     /**
      * 启动脚本的存放路径 ~/dst/bin
      */
-    public static final String START_DST_BIN_PATH = "/dst/bin";
+    public static final String START_DST_BIN_PATH = "/dst/bin64";
     /**
      * 启动地面脚本的名称
      */
@@ -47,12 +47,12 @@ public final class DstConstant {
     /**
      * 启动地面进程命令 设置名称为 DST_MASTER
      */
-    public static final String START_MASTER_CMD = "cd ~/dst/bin/ ; screen -d -m -S \""+SCREEN_WORK_MASTER_NAME+"\"  ./dontstarve_dedicated_server_nullrenderer -console -cluster MyDediServer -shard "+DST_MASTER+"  ;";
+    public static final String START_MASTER_CMD = "cd ~/dst/bin64/ ; screen -d -m -S \""+SCREEN_WORK_MASTER_NAME+"\"  ./dontstarve_dedicated_server_nullrenderer_x64 -console -cluster MyDediServer -shard "+DST_MASTER+"  ;";
 
     /**
      * 启动洞穴进程命令 设置名称为 DST_CAVES
      */
-    public static final String START_CAVES_CMD = "cd ~/dst/bin/ ; screen -d -m -S \""+SCREEN_WORK_CAVES_NAME+"\"  ./dontstarve_dedicated_server_nullrenderer -console -cluster MyDediServer -shard "+DST_CAVES+" ;";
+    public static final String START_CAVES_CMD = "cd ~/dst/bin64/ ; screen -d -m -S \""+SCREEN_WORK_CAVES_NAME+"\"  ./dontstarve_dedicated_server_nullrenderer_x64 -console -cluster MyDediServer -shard "+DST_CAVES+" ;";
 
     /**
      * 检查目前所有的screen作业，并删除已经无法使用的screen作业
@@ -102,7 +102,7 @@ public final class DstConstant {
     /**
      * 饥荒的启动程序
      */
-    public static final String DST_START_PROGRAM = "dontstarve_dedicated_server_nullrenderer";
+    public static final String DST_START_PROGRAM = "dontstarve_dedicated_server_nullrenderer_x64";
 
     /**
      * 单斜杠
